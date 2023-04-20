@@ -39,12 +39,12 @@ def dashboard(request):
     # print(test)
 
     num = 0
-    
+    num2 = num
     lastList = []
     listCnt = len(lastList)
     print("res", resName)
     while True:
-        num2 = 0
+
         psSum = 0
         prSum = 0
         # db 안에 있는 식당 이름을 식당 리스트와 비교하는 반복문        
@@ -60,29 +60,32 @@ def dashboard(request):
                 # print(test[i2])
                 prSum = test[i2]["price"] + prSum
                 # print(resName[num])
-                print("psSum", psSum, test[i2])
-                print("prSum", prSum)
+                # print("psSum", psSum, test[i2])
+                # print("prSum", prSum)
                 listCnt = len(lastList)
-                print("listCnt", listCnt)
+                # print("listCnt", listCnt)
                 # for ehwjs in range(cntList):
+                result = prSum / psSum
+                result = round(int(result), -2)
 
                 if listCnt == 0:
-                    lastList.append([resName1, psSum, prSum])
+                    lastList.append([resName1, result])
                     # continue
                 if listCnt != 0:
-                    print("밖", num2)
+                    # print("밖", num2)
                     if resName1 == lastList[num2][0]:
-                        print("num2", num2)
-                        print(lastList[num2][0])
-                        print("같다")
-                        lastList[num] = [resName1, psSum, prSum]
-                        num2 +=1                            
-                    elif resName1 != lastList[num2][0]:
-                        print("num2", num2)
-                        print(lastList[num2][0])                        
-                        print("다르다")
-                        lastList.append([resName1, psSum, prSum])
+                        # print("num2", num2)
+                        # print(lastList[0][0])
+                        # print("같다")
+                        lastList[num] = [resName1, result]
+                        # num2 +=1
+                    elif resName1 != lastList[0][0]:
+                        # print("num2", num2)
+                        # print(lastList[0][0])                        
+                        # print("다르다")
+                        lastList.append([resName1, result])
                         num2 +=1
+                    
                         
                 # TestData.objects.update_or_create(
                 #     restaurant = resName1,
@@ -106,16 +109,31 @@ def dashboard(request):
             break
         
 
-        print("last", lastList)
-        # print(resName)
+        # print("last", lastList)
+        # print(lastList[0][1]/)
+    i = 0
+    topList = []
+    prList = []
+    for pr in lastList:
+        prList.append(pr[1])
         
-        # print(ehwjs)
+        # if top[1] > 50:
+            # topList.append(top)
+    print(prList)
+    prList1 = prList[:]
+    prList1.reverse()
+        # # print(topList.reverse())
 
-        # for go in lastList:
-        #     print(go)
+    for go in range(5):
+        tmp = prList1.pop()
+        # print(tmp, "Index : ",prList.index(tmp))
+        for top in range(len(lastList)):
+            if tmp == lastList[top][1]:
+                topList.append(lastList[top])
 
-    # chartDash = {
-    #     "dbDatas": order
-    # }
 
-    return render(request, "dashboard/chart.html")
+    chartDash = {
+        "dbDatas": topList
+    }
+
+    return render(request, "dashboard/chart.html", chartDash)

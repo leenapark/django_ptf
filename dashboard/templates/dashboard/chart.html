@@ -1,14 +1,9 @@
-{% extends "base.html" %}
-
-
-
-{% block main_area%}
-  <h1>test page</h1>
-  {{ dbDatas }}
-  <div class="col-8">
-    <canvas id="myChart"></canvas>
-  </div>
-
+{% extends "base.html" %} {% block main_area%}
+<h1>test page</h1>
+<!-- {{ dbDatas }} -->
+<div class="col-8">
+  <canvas id="myChart"></canvas>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -23,12 +18,12 @@
   // chart data 설정
   const labels = [
     {% for chartData in dbDatas %}
-      "{{ chartData.restaurant }}",
+      "{{ chartData.0 }}",
     {% endfor %}
   ] // views.py 에서 넘어오는 값
   const popData = [
     {% for chartData in dbDatas %}
-      {{ chartData.name_count }},
+      {{ chartData.1 }},
     {% endfor %}
   ]
   const data = {
@@ -78,7 +73,6 @@
   // chart 객체 설정
   // new Chart(DOM 에서 chart push 영역, chart default setting)
   new Chart(ctx, config)
-
 </script>
 
 {% endblock %}
