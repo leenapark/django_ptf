@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+
+
+{% block main_area%}
+  <h1>test page</h1>
+  {{ dbDatas }}
+  <div class="col-8">
+    <canvas id="myChart"></canvas>
+  </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // DOM 에서 chart push 영역 지정
+  const ctx = document.getElementById('myChart');
+  /*
+  {% for cd in countryDatas %}
+    {{ cd.country }}
+    {{ cd.population }}
+  {% endfor %}
+  */
+  // chart data 설정
+  const labels = [
+    {% for chartData in dbDatas %}
+      "{{ chartData.restaurant }}",
+    {% endfor %}
+  ] // views.py 에서 넘어오는 값
+  const popData = [
+    {% for chartData in dbDatas %}
+      {{ chartData.name_count }},
+    {% endfor %}
+  ]
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'My First Dataset',
+      data: popData,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)'
+      ],
+      borderWidth: 1
+    }]
+  };
+
+  // chart default setting
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        }
+      },
+      responsive: true,
+      responsiveAnimarionDuration: 2,
+      maintainAspectRatio: true,
+      aspectRatio: false
+    },
+  };
+
+  // chart 객체 설정
+  // new Chart(DOM 에서 chart push 영역, chart default setting)
+  new Chart(ctx, config)
+
+</script>
+
+{% endblock %}
