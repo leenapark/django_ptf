@@ -13,3 +13,12 @@ doc_h = nav_h + con_h + footer_h
 if (doc_h >= window.innerHeight){
   document.querySelector('footer').classList.remove('fixed-bottom')
 }
+
+function mapimg(imgSrc){
+  console.log(imgSrc)
+  document.getElementById("map_change").src = imgSrc
+}
+
+function cltest(z){
+  console.log(z)
+}

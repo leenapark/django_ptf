@@ -9,15 +9,7 @@
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
-<script>
-$(function mapimg(imgSrc){
-  console.log(imgSrc)
-  $('img[usemap]').rwdImageMaps();
-  $("#map_change").attr("src", imgSrc);
-  return imgSrc
-});
-console.log(imgSrc)
-</script>
+
 {% block main_area%}
 <h1>test page</h1>
 
@@ -27,9 +19,9 @@ console.log(imgSrc)
   </div>
 
   <map name="webtong_Map" class="webtong_Map_map">
-    <area shape="poly" tabindex="0" coords="186,50,195,64,194,87,220,107,230,87,222,60,226,47,201,34,186,51,206,37,205,38" href="#none" alt="도봉구자원봉사센터" onmouseover="mapimg('static/img/map01.png');" onfocus="mapimg('static/img/map01.png');">
+    <area shape="poly" tabindex="0" coords="186,50,195,64,194,87,220,107,230,87,222,60,226,47,201,34,186,51,206,37,205,38" href="#none" alt="도봉구자원봉사센터" onmouseover="mapimg('/static/img/map01.png');" onfocus="mapimg('/static/img/map01.png');" onclick="cltest(1)">
     
-    <area shape="poly" tabindex="0" coords="221,107,241,119,270,111,257,48,248,38,228,48,224,60,232,88" href="#none" alt="노원구자원봉사센터" onmouseover="mapimg('static/img/map02.png');" onfocus="mapimg('static/img/map02.png');">
+    <area shape="poly" tabindex="0" coords="221,107,241,119,270,111,257,48,248,38,228,48,224,60,232,88" href="#none" alt="노원구자원봉사센터" onmouseover="mapimg('/static/img/map02.png');" onfocus="mapimg('/static/img/map02.png');">
     
     <area shape="poly" tabindex="0" coords="223,112,194,88,193,64,185,54,177,57,166,89,205,123" href="#none" alt="강북구자원봉사센터" onmouseover="mapimg('/static/img/map03.png');" onfocus="mapimg('/static/img/map03.png');">
     
