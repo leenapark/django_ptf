@@ -1,0 +1,66 @@
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js">
+</script>
+
+
+<script>
+  const labelsYC = [
+      {% for chartYcData in topYcList %}
+        "{{ chartYcData.0 }}",
+      {% endfor %}
+    ] // views.py 에서 넘어오는 값
+    const topDataYc = [
+      {% for chartYcData in topYcList %}
+        {{ chartYcData.1 }},
+      {% endfor %}
+    ]
+	new Chart(document.getElementById("line-chart-yc"), {
+		type : 'line',
+		data : {
+			labels : labelsYC,
+			datasets : [
+					{
+						data : topDataYc,
+						label : "America",
+						borderColor : "#3cba9f",
+						fill : false
+					}]
+		},
+		options : {
+			title : {
+				display : true,
+				text : 'ya'
+			}
+		}
+	});
+
+  const labelsDB = [
+      {% for chartDbData in topDbList %}
+        "{{ chartDbData.0 }}",
+      {% endfor %}
+    ] // views.py 에서 넘어오는 값
+    const topDataDB = [
+      {% for chartDbData in topDbList %}
+        {{ chartDbData.1 }},
+      {% endfor %}
+    ]
+	new Chart(document.getElementById("line-chart-db"), {
+		type : 'line',
+		data : {
+			labels : labelsDB,
+			datasets : [
+					{
+						data : topDataDB,
+						label : "America",
+						borderColor : "#3cba9f",
+						fill : false
+					}]
+		},
+		options : {
+			title : {
+				display : true,
+				text : 'ya'
+			}
+		}
+	});
+</script>

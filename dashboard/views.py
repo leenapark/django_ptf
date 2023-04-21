@@ -12,128 +12,136 @@ from django.db.models import Sum, Count
 
 # Create your views here.
 def dashboard(request):
-    resName = []
-    testList = {}
+    # ycResName = []
+    # dbResName = []
 
-
-    test = DashData.objects.values()
-    dbCnt = test.count()
-
-    testCnt = DashData.objects.values("restaurant").annotate(name_count=Count('restaurant')).filter(name_count__gt=1)
-    test1 = DashData.objects.values("restaurant")
-    # testSum = DashData.objects.values("restaurant").annotate(name_sum=Sum('restaurant')).filter(name_count__gt=1)
-    # order = testCnt.order_by('-name_count')[:5]
+    # allData = DashData.objects.values()
+    # dbCnt = allData.count()
+    # # ycallCnt = DashData.objects.filter(borough="yangcheon").values("id")
+    # dobondAllCnt = DashData.objects.filter(borough="dobong").values("id")
+    # # print(allData[dobondAllCnt])
+    # dobondAllCnt = list(dobondAllCnt[0].values())
+    # numDB = int(dobondAllCnt[0])
+    # yangcheon = DashData.objects.filter(borough="yangcheon").values("restaurant").annotate(name_count=Count('restaurant')).filter(name_count__gt=1)
+    # dobong = DashData.objects.filter(borough="dobong").values("restaurant").annotate(name_count=Count('restaurant')).filter(name_count__gt=1)
     
-    for name in testCnt:
-        # print(name)
-        # print(name['restaurant'])
-        resName.append(name['restaurant'])
-        # print(resName)
 
-    cntList = len(resName)
-    # print(cntList, type(cntList))
-    # for ck in testCnt:
-    #     print(ck)
-    # testCnt = testCnt.count()
+    # for name in yangcheon:
+    #     # print(name)
+    #     ycResName.append(name['restaurant'])
+    # for name in dobong:
+    #     # print(name)
+    #     dbResName.append(name['restaurant'])
 
-    # print(test)
+    # cntYcList = len(ycResName)
+    # cntDbList = len(dbResName)
 
-    num = 0
-    num2 = num
-    lastList = []
-    listCnt = len(lastList)
-    print("res", resName)
-    while True:
+    # # print(resName)
+    # # print(cntList)
+    # # num = 0
+    # numYC = 0
+    # numYC1 = numYC
+    # ycList = []
+    # ycCnt = len(ycList)
 
-        psSum = 0
-        prSum = 0
-        # db 안에 있는 식당 이름을 식당 리스트와 비교하는 반복문        
-        for i2 in range(dbCnt):
+    # if allData[0]["borough"] == "yangcheon":
+    #     while True:
+    #         psSum = 0
+    #         prSum = 0
+    #         # db 안에 있는 식당 이름을 식당 리스트와 비교하는 반복문        
+    #         for i2 in range(dbCnt):
+    #             resName2 = allData[i2]['restaurant']
+    #             resName1 = ycResName[numYC]
+    #             if resName1 in resName2:
+    #                 psSum = allData[i2]['personnel'] + psSum
+    #                 prSum = allData[i2]["price"] + prSum
+    #                 ycCnt = len(ycList)
 
-            resName2 = test[i2]['restaurant']
-            resName1 = resName[num]
-            if resName1 in resName2:
-                # print("num", num)
-                # print(resName2)
-                # print(test[num])
-                psSum = test[i2]['personnel'] + psSum
-                # print(test[i2])
-                prSum = test[i2]["price"] + prSum
-                # print(resName[num])
-                # print("psSum", psSum, test[i2])
-                # print("prSum", prSum)
-                listCnt = len(lastList)
-                # print("listCnt", listCnt)
-                # for ehwjs in range(cntList):
-                result = prSum / psSum
-                result = round(int(result), -2)
+    #                 result = prSum / psSum
+    #                 result = round(int(result), -2)
 
-                if listCnt == 0:
-                    lastList.append([resName1, result])
-                    # continue
-                if listCnt != 0:
-                    # print("밖", num2)
-                    if resName1 == lastList[num2][0]:
-                        # print("num2", num2)
-                        # print(lastList[0][0])
-                        # print("같다")
-                        lastList[num] = [resName1, result]
-                        # num2 +=1
-                    elif resName1 != lastList[0][0]:
-                        # print("num2", num2)
-                        # print(lastList[0][0])                        
-                        # print("다르다")
-                        lastList.append([resName1, result])
-                        num2 +=1
-                    
-                        
-                # TestData.objects.update_or_create(
-                #     restaurant = resName1,
+    #                 if ycCnt == 0:
+    #                     ycList.append([resName1, result])
+    #                 if ycCnt != 0:
+    #                     if resName1 == ycList[numYC1][0]:
+    #                         ycList[numYC] = [resName1, result]
+    #                     elif resName1 != ycList[0][0]:
+    #                         ycList.append([resName1, result])
+    #                         numYC1 +=1
+    #         numYC += 1
+    #         if numYC >= cntYcList:
+    #             break
+    # numDB1 = 0
+    # numDB3 = numDB1
+    # dobongList = []
+    # dobongCnt = len(dobongList)
 
-                #     defaults={
-                #         "restaurant" : resName1,
-                #         "psSum": psSum,
-                #         "prSum": prSum
-                #     }
-                # )
-    #             resName1 = [resName1, psSum, prSum]
-    #             # result = prSum / psSum
-    #             # result = round(int(result), -2)
-    #             # print("result", result)
-    #             # print(test[i2])
-                # lastList.append([resName[num], result])
-                
-        num += 1
-        # num2 +=1
-        if num >= cntList:
-            break
+    # if allData[numDB]["borough"] == "dobong":
+    #         # print("도봉쓰")
+    #         while True:
+    #             psSum = 0
+    #             prSum = 0
+    #             # db 안에 있는 식당 이름을 식당 리스트와 비교하는 반복문        
+    #             for i2 in range(dbCnt):
+    #                 resName2 = allData[i2]['restaurant']
+    #                 resName1 = dbResName[numDB1]
+    #                 if resName1 in resName2:
+    #                     psSum = allData[i2]['personnel'] + psSum
+    #                     prSum = allData[i2]["price"] + prSum
+    #                     dobongCnt = len(dobongList)
+
+    #                     result = prSum / psSum
+    #                     result = round(int(result), -2)
+    #                     if dobongCnt == 0:
+    #                         dobongList.append([resName1, result])
+    #                     if dobongCnt != 0:
+    #                         if resName1 == dobongList[numDB3][0]:
+    #                             dobongList[numDB1] = [resName1, result]
+    #                         elif resName1 != dobongList[0][0]:
+    #                             dobongList.append([resName1, result])
+    #                             numDB3 +=1
+    #             numDB1 += 1
+    #             if numDB1 >= cntDbList:
+    #                 break
+            
+
+    # # print(ycList)
+    # # print(dobongList)
+
+    # # i = 0
+    # topYcList = []
+    # prYcList = []
+    # for pr in ycList:
+    #     prYcList.append(pr[1])
         
+    # # print(prList)
+    # prList1 = prYcList[:]
+    # prList1.reverse()
 
-        # print("last", lastList)
-        # print(lastList[0][1]/)
-    i = 0
-    topList = []
-    prList = []
-    for pr in lastList:
-        prList.append(pr[1])
+    # for go in range(5):
+    #     tmp = prList1.pop()
+    #     for top in range(len(ycList)):
+    #         if tmp == ycList[top][1]:
+    #             topYcList.append(ycList[top])
+    # topDbList = []
+    # prDbList = []
+    # for pr in dobongList:
+    #     prDbList.append(pr[1])
         
-        # if top[1] > 50:
-            # topList.append(top)
-    print(prList)
-    prList1 = prList[:]
-    prList1.reverse()
-        # # print(topList.reverse())
+    # # print(prList)
+    # prList2 = prDbList[:]
+    # prList2.reverse()
 
-    for go in range(5):
-        tmp = prList1.pop()
-        # print(tmp, "Index : ",prList.index(tmp))
-        for top in range(len(lastList)):
-            if tmp == lastList[top][1]:
-                topList.append(lastList[top])
+    # for go in range(5):
+    #     tmp = prList2.pop()
+    #     for top in range(len(dobongList)):
+    #         if tmp == dobongList[top][1]:
+    #             topDbList.append(dobongList[top])
 
 
-    chartDash = {
-        "dbDatas": topList
-    }
+    # chartDash = {
+    #     "topYcList": topYcList,
+    #     "topDbList": topDbList
+    # }
 
-    return render(request, "dashboard/chart.html", chartDash)
+    return render(request, "dashboard/chart.html")

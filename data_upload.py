@@ -14,7 +14,7 @@ django.setup()
 # data를 ORM으로 uploading 하기 위해 import
 from dashboard.models import DashData
 
-CSV_PATH='./dashboard/data/yangcheon/yangcheon.csv'
+CSV_PATH='./dashboard/data/dobong/dobong.csv'
 
 with open(CSV_PATH, "r", encoding="UTF-8") as file:
   dataRows = csv.reader(file, skipinitialspace=True)
@@ -41,7 +41,7 @@ with open(CSV_PATH, "r", encoding="UTF-8") as file:
                restaurant = dbData[1]
                personnel = dbData[2]
                price = dbData[3]
-               borough = "yangcheon"
+               borough = "dobong"
 
                DashData.objects.create(
                   regDate = regDate,

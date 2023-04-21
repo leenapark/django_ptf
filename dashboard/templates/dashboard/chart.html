@@ -1,78 +1,89 @@
-{% extends "base.html" %} {% block main_area%}
-<h1>test page</h1>
-<!-- {{ dbDatas }} -->
-<div class="col-8">
-  <canvas id="myChart"></canvas>
-</div>
+{% extends "base.html" %}
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% block head_title %}
+미식한 고독가
+{% endblock %}
+{% block style %}
+  <link rel="stylesheet" href="/static/css/dashboard.css" media="screen">
+{% endblock %}
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
 <script>
-  // DOM 에서 chart push 영역 지정
-  const ctx = document.getElementById('myChart');
-  /*
-  {% for cd in countryDatas %}
-    {{ cd.country }}
-    {{ cd.population }}
-  {% endfor %}
-  */
-  // chart data 설정
-  const labels = [
-    {% for chartData in dbDatas %}
-      "{{ chartData.0 }}",
-    {% endfor %}
-  ] // views.py 에서 넘어오는 값
-  const popData = [
-    {% for chartData in dbDatas %}
-      {{ chartData.1 }},
-    {% endfor %}
-  ]
-  const data = {
-    labels: labels,
-    datasets: [{
-      label: 'My First Dataset',
-      data: popData,
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-        'rgba(255, 205, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(201, 203, 207, 0.2)'
-      ],
-      borderColor: [
-        'rgb(255, 99, 132)',
-        'rgb(255, 159, 64)',
-        'rgb(255, 205, 86)',
-        'rgb(75, 192, 192)',
-        'rgb(54, 162, 235)',
-        'rgb(153, 102, 255)',
-        'rgb(201, 203, 207)'
-      ],
-      borderWidth: 1
-    }]
-  };
-
-  // chart default setting
-  const config = {
-    type: 'bar',
-    data: data,
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        }
-      },
-      responsive: true,
-      responsiveAnimarionDuration: 2,
-      maintainAspectRatio: true,
-      aspectRatio: false
-    },
-  };
-
-  // chart 객체 설정
-  // new Chart(DOM 에서 chart push 영역, chart default setting)
-  new Chart(ctx, config)
+$(function mapimg(imgSrc){
+  console.log(imgSrc)
+  $('img[usemap]').rwdImageMaps();
+  $("#map_change").attr("src", imgSrc);
+  return imgSrc
+});
+console.log(imgSrc)
 </script>
+{% block main_area%}
+<h1>test page</h1>
 
+
+  <div class="webtong_map">
+    <img src='/static/img/map02.png' alt="서울시 지도" id="map_change" usemap="#webtong_Map">
+  </div>
+
+  <map name="webtong_Map" class="webtong_Map_map">
+    <area shape="poly" tabindex="0" coords="186,50,195,64,194,87,220,107,230,87,222,60,226,47,201,34,186,51,206,37,205,38" href="#none" alt="도봉구자원봉사센터" onmouseover="mapimg('static/img/map01.png');" onfocus="mapimg('static/img/map01.png');">
+    
+    <area shape="poly" tabindex="0" coords="221,107,241,119,270,111,257,48,248,38,228,48,224,60,232,88" href="#none" alt="노원구자원봉사센터" onmouseover="mapimg('static/img/map02.png');" onfocus="mapimg('static/img/map02.png');">
+    
+    <area shape="poly" tabindex="0" coords="223,112,194,88,193,64,185,54,177,57,166,89,205,123" href="#none" alt="강북구자원봉사센터" onmouseover="mapimg('/static/img/map03.png');" onfocus="mapimg('/static/img/map03.png');">
+    
+    <area shape="poly" tabindex="0" coords="163,101,146,123,110,154,95,142,116,94,144,76" href="#none" alt="은평구자원봉사센터" onmouseover="mapimg('/static/img/map04.png');" onfocus="mapimg('/static/img/map04.png');">
+    
+    <area shape="poly" tabindex="0" coords="166,102,174,140,203,152,243,120,224,113,206,126,173,98" href="#none" alt="성북구자원봉사센터" onmouseover="mapimg('/static/img/map05.png');" onfocus="mapimg('/static/img/map05.png');">
+    
+    <area shape="poly" tabindex="0" coords="203,154,173,142,165,104,148,125,161,172,171,163,202,164" href="#none" alt="종로구자원봉사센터" onmouseover="mapimg('/static/img/map06.png');" onfocus="mapimg('/static/img/map06.png');">
+    
+    <area shape="poly" tabindex="0" coords="239,120,247,163,263,158,277,124,271,113" href="#none" alt="중랑구자원봉사센터" onmouseover="mapimg('/static/img/map07.png');" onfocus="mapimg('/static/img/map07.png');">
+    
+    <area shape="poly" tabindex="0" coords="239,124,201,153,207,161,241,171,246,162" href="#none" alt="동대문구자원봉사센터" onmouseover="mapimg('/static/img/map08.png');" onfocus="mapimg('/static/img/map08.png');">
+    
+    <area shape="poly" tabindex="0" coords="147,126,109,158,127,176,161,173" href="#none" alt="서대문구자원봉사센터" onmouseover="mapimg('/static/img/map09.png');" onfocus="mapimg('/static/img/map09.png');">
+    
+    <area shape="poly" tabindex="0" coords="162,174,192,188,202,165,171,166" href="#none" alt="중구자원봉사센터" onmouseover="mapimg('/static/img/map10.png');" onfocus="mapimg('/static/img/map10.png');">
+    
+    <area shape="poly" tabindex="0" coords="204,161,192,190,200,197,232,200,241,174" href="#none" alt="성동구자원봉사센터" onmouseover="mapimg('/static/img/map11.png');" onfocus="mapimg('/static/img/map11.png');">
+    
+    <area shape="poly" tabindex="0" coords="248,165,233,203,261,205,273,173,263,162" href="#none" alt="광진구자원봉사센터" onmouseover="mapimg('/static/img/map12.png');" onfocus="mapimg('/static/img/map12.png');">
+    
+    <area shape="poly" tabindex="0" coords="320,151,275,173,270,189,294,216,326,184" href="#none" alt="강동구자원봉사센터" onmouseover="mapimg('/static/img/map13.png');" onfocus="mapimg('/static/img/map13.png');">
+    
+    <area shape="poly" tabindex="0" coords="34,130,104,186,79,184,77,202,61,204,53,188,51,195,4,182" href="#none" alt="강서구자원봉사센터" onmouseover="mapimg('/static/img/map14.png');" onfocus="mapimg('/static/img/map14.png');">
+    
+    <area shape="poly" tabindex="0" coords="111,191,140,205,157,175,127,178,94,143,70,158" href="#none" alt="마포구자원봉사센터" onmouseover="mapimg('/static/img/map15.png');" onfocus="mapimg('/static/img/map15.png');">
+    
+    <area shape="poly" tabindex="0" coords="99,185,96,218,108,244,141,206" href="#none" alt="영등포구자원봉사센터" onmouseover="mapimg('/static/img/map16.png');" onfocus="mapimg('/static/img/map16.png');">
+    
+    <area shape="poly" tabindex="0" coords="142,207,173,221,199,199,189,188,160,175" href="#none" alt="용산구자원봉사센터" onmouseover="mapimg('/static/img/map17.png');" onfocus="mapimg('/static/img/map17.png');">
+    
+    <area shape="poly" tabindex="0" coords="220,199,200,201,196,206,218,258,250,258,263,276,288,261,246,228,238,208" href="#none" alt="강남구자원봉사센터" onmouseover="mapimg('/static/img/map18.png');" onfocus="mapimg('/static/img/map18.png');">
+    
+    <area shape="poly" tabindex="0" coords="240,206,250,230,289,262,312,231,270,192,262,207" href="#none" alt="송파구자원봉사센터" onmouseover="mapimg('/static/img/map19.png');" onfocus="mapimg('/static/img/map19.png');">
+    
+    <area shape="poly" tabindex="0" coords="97,188,93,221,50,225,50,198,54,192,63,206,76,205,80,186" href="#none" alt="양천구자원봉사센터" onmouseover="mapimg('/static/img/map20.png');" onfocus="mapimg('/static/img/map20.png');">
+    
+    <area shape="poly" tabindex="0" coords="96,223,47,227,40,247,61,260,88,245,109,249" href="#none" alt="구로구자원봉사센터" onmouseover="mapimg('/static/img/map21.png');" onfocus="mapimg('/static/img/map21.png');">
+    
+    <area shape="poly" tabindex="0" coords="90,247,110,248,133,285,105,293" href="#none" alt="금천구자원봉사센터" onmouseover="mapimg('/static/img/map22.png');" onfocus="mapimg('/static/img/map22.png');">
+    
+    <area shape="poly" tabindex="0" coords="111,247,141,298,178,274,169,255,152,241,131,239" href="#none" alt="관악구자원봉사센터" onmouseover="mapimg('/static/img/map23.png');" onfocus="mapimg('/static/img/map23.png');">
+    
+    <area shape="poly" tabindex="0" coords="141,207,108,245,138,235,157,240,173,260,168,222" href="#none" alt="동작구자원봉사센터" onmouseover="mapimg('/static/img/map25.png');" onfocus="mapimg('/static/img/map25.png');">
+    
+    <area shape="poly" tabindex="0" coords="178,269,236,299,262,277,248,261,216,261,195,206,170,224" href="#none" alt="서초구자원봉사센터" onmouseover="mapimg('/static/img/map24.png');" onfocus="mapimg('/static/img/map24.png');">
+    
+  </map>
+
+  <!-- <div class="col-8">
+    <canvas id="line-chart-yc"></canvas>
+    <canvas id="line-chart-db"></canvas>
+  </div> -->
+
+
+<!-- {% include "dashboard/script.html" %} -->
 {% endblock %}
