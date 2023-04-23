@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+
+{% endblock %}
+{% block style %}
+{% endblock %}
+
+{% block main_area %}
+<section id="banner" class="spotlight style1 bottom">
+
+    <div class="content">
+        
+        <div id="user">
+            <div id="loginForm">
+                <form action="user/login" method="post">
+                    
+                    <!-- 아이디 -->
+                    <div class="form-group">
+                        <label class="form-text" for="input-uid">아이디</label>
+                        <input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
+                    </div>
+                    
+                    <!-- 비밀번호 -->
+                    <div class="form-group">
+                        <label class="form-text" for="input-pass">비밀번호</label>
+                        <input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
+                    </div>
+                    {% if result == "fail" %}
+                        <span>로그인에 실패했습니다. 다시 입력해주세요.</span>
+                    {% endif %}
+    
+                    <!-- 버튼영역 -->
+                    <div class="button-area">
+                        <button type="submit" id="btn-submit" class="button" style="margin-top: 20px;">로그인</button>
+                    </div>
+                    
+                </form>
+            </div>
+            <!-- //loginForm -->
+        </div>
+        <!-- //user -->
+        
+        <div class="clear"></div>
+    </div>
+    <!-- //content  -->
+</section>
+{% endblock %}

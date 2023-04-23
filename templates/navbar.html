@@ -1,3 +1,4 @@
+
 <!-- Header -->
 <header id="header">
   <h1 id="logo"><a href="index.html">NOWHERE</a></h1>
@@ -22,7 +23,47 @@
         </ul>
       </li>
       <li><a href="elements.html">Elements</a></li>
-      <li><a href="#" class="button primary">Sign Up</a></li>
+        {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a href="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ user.username }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a href="/accounts/logout/" class="dropdown-item button primary">Log Out</a>
+            </div>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <!-- Button trigger modal -->
+            <a class="nav-link button primary" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+              <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+          </li>
+        {% endif %}
+      <li><a href="" class="button primary">Sign Up</a></li>
     </ul>
   </nav>
 </header>
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fs-5" id="loginModalLabel"><i class="bi bi-box-arrow-in-right"></i> Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-grid gap-2">
+          <a href="" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class=""></i> Login</a>
+          <a href="" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class="bi bi-google"></i> Login with Google</a>
+          <a href="/accounts/signup/" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class="bi bi-envelope-fill"></i> SignUp with E-mail</a>
+          <a href="/accounts/login/" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class="bi bi-envelope-fill"></i> Login with E-mail</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
