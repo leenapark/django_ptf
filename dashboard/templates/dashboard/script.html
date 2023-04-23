@@ -1,66 +1,95 @@
+<!-- 이미지보기 팝업(모달)창 -->
+<div class="modal fade" id="viewModal">
+	<div class="modal-dialog" >
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close btn btn-secondary" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Chart</h4>
+			</div>
+			<div class="modal-body">
+				<div class="formgroup" >
+					<canvas id="lineChart"></canvas> <!-- ajax로 처리 : 이미지출력 위치-->
+				</div>
+				
+				<div class="formgroup">
+					<p id="viewModelContent"></p>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->	
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js">
 </script>
 
 
 <script>
-  const labelsYC = [
-      {% for chartYcData in topYcList %}
-        "{{ chartYcData.0 }}",
-      {% endfor %}
-    ] // views.py 에서 넘어오는 값
-    const topDataYc = [
-      {% for chartYcData in topYcList %}
-        {{ chartYcData.1 }},
-      {% endfor %}
-    ]
-	new Chart(document.getElementById("line-chart-yc"), {
-		type : 'line',
-		data : {
-			labels : labelsYC,
-			datasets : [
-					{
-						data : topDataYc,
-						label : "America",
-						borderColor : "#3cba9f",
-						fill : false
-					}]
-		},
-		options : {
-			title : {
-				display : true,
-				text : 'ya'
-			}
+	function mapimg(imgSrc) {
+		document.getElementById("map_change").src = imgSrc;
 		}
-	});
+		// 사진 클릭 했을 때
+	function mapChart(x){
+		var saveName = $("#map_change").attr("src");
+		// console.log(saveName)
+		$('#viewModal').modal();
+		// console.log(x)
 
-  const labelsDB = [
-      {% for chartDbData in topDbList %}
-        "{{ chartDbData.0 }}",
-      {% endfor %}
-    ] // views.py 에서 넘어오는 값
-    const topDataDB = [
-      {% for chartDbData in topDbList %}
-        {{ chartDbData.1 }},
-      {% endfor %}
-    ]
-	new Chart(document.getElementById("line-chart-db"), {
-		type : 'line',
-		data : {
-			labels : labelsDB,
-			datasets : [
-					{
-						data : topDataDB,
-						label : "America",
-						borderColor : "#3cba9f",
-						fill : false
-					}]
-		},
-		options : {
-			title : {
-				display : true,
-				text : 'ya'
+		// 이미지 출력 ajax
+		$.ajax({
+			
+			url : "{% url 'post' %}",		
+			type : "POST",
+			//contentType : "application/json",
+			data : {
+				"borough": x,
+				"csrfmiddlewaretoken": '{{ csrf_token }}'
+			},
+			headers: { "X-CSRFToken": "{{ csrf_token }}"
+			},
+			dataType : "JSON",
+			success: function(resData) {
+				// 성공적으로 데이터를 받아온 경우 실행됩니다.
+				var labels = resData.map(function(data) {
+					return data.restaurant;
+				});
+				var data = resData.map(function(data) {
+					return data.priceAvg;
+				});
+				var ctx = document.getElementById('lineChart').getContext('2d');
+				if(window.chartObj != undefined){
+					window.chartObj.destroy();
+				}
+				window.chartObj = new Chart(ctx, {
+					type: 'line',
+					data: {
+						labels: labels,
+						datasets: [{
+							data: data,
+							label: "America",
+							borderColor: "#3cba9f",
+							fill: false
+						}]
+					},
+					options: {
+						title: {
+							display: true,
+							text: 'ya'
+						}
+					}
+				});
+
+			},
+			error : function(XHR, status, error) {
+				console.log("실패")
+				console.error(status + " : " + error);
 			}
-		}
-	});
+		});
+
+	}
+
+		
 </script>

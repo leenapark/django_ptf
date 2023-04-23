@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from .models import DashData
 from django.db.models import Sum

@@ -3,79 +3,77 @@
 {% block head_title %}
 미식한 고독가
 {% endblock %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+
 {% block style %}
-  <link rel="stylesheet" href="/static/css/dashboard.css" media="screen">
+  <link rel="stylesheet" href="/static/css/dashboard.css">
 {% endblock %}
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.min.js"></script>
 
 {% block main_area%}
-<h1>test page</h1>
+<h1></h1>
 
-
-  <div class="webtong_map">
-    <img src='/static/img/map02.png' alt="서울시 지도" id="map_change" usemap="#webtong_Map">
+  <div id="myModal" class="viewChart">
+    <img src='/static/img/map02.png' data-bs-toggle="modal" data-bs-target="#viewModal" alt="서울시 지도" id="map_change" usemap="#webtong_Map">
   </div>
 
+
+
   <map name="webtong_Map" class="webtong_Map_map">
-    <area shape="poly" tabindex="0" coords="186,50,195,64,194,87,220,107,230,87,222,60,226,47,201,34,186,51,206,37,205,38" href="#none" alt="도봉구자원봉사센터" onmouseover="mapimg('/static/img/map01.png');" onfocus="mapimg('/static/img/map01.png');" onclick="cltest(1)">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="186,50,195,64,194,87,220,107,230,87,222,60,226,47,201,34,186,51,206,37,205,38" alt="도봉구" onmouseover="mapimg('/static/img/map01.png');" onfocus="mapimg('/static/img/map01.png');" onclick="mapChart('dobong')">
     
-    <area shape="poly" tabindex="0" coords="221,107,241,119,270,111,257,48,248,38,228,48,224,60,232,88" href="#none" alt="노원구자원봉사센터" onmouseover="mapimg('/static/img/map02.png');" onfocus="mapimg('/static/img/map02.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="221,107,241,119,270,111,257,48,248,38,228,48,224,60,232,88" href="#none" alt="노원구" onmouseover="mapimg('/static/img/map02.png');" onfocus="mapimg('/static/img/map02.png');" onclick="mapChart('nowon')">
     
-    <area shape="poly" tabindex="0" coords="223,112,194,88,193,64,185,54,177,57,166,89,205,123" href="#none" alt="강북구자원봉사센터" onmouseover="mapimg('/static/img/map03.png');" onfocus="mapimg('/static/img/map03.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="223,112,194,88,193,64,185,54,177,57,166,89,205,123" href="#none" alt="강북구" onmouseover="mapimg('/static/img/map03.png');" onfocus="mapimg('/static/img/map03.png');" onclick="mapChart(3)">
     
-    <area shape="poly" tabindex="0" coords="163,101,146,123,110,154,95,142,116,94,144,76" href="#none" alt="은평구자원봉사센터" onmouseover="mapimg('/static/img/map04.png');" onfocus="mapimg('/static/img/map04.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="163,101,146,123,110,154,95,142,116,94,144,76" href="#none" alt="은평구" onmouseover="mapimg('/static/img/map04.png');" onfocus="mapimg('/static/img/map04.png');" onclick="mapChart('eunpyeong')">
     
-    <area shape="poly" tabindex="0" coords="166,102,174,140,203,152,243,120,224,113,206,126,173,98" href="#none" alt="성북구자원봉사센터" onmouseover="mapimg('/static/img/map05.png');" onfocus="mapimg('/static/img/map05.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="166,102,174,140,203,152,243,120,224,113,206,126,173,98" href="#none" alt="성북구" onmouseover="mapimg('/static/img/map05.png');" onfocus="mapimg('/static/img/map05.png');" onclick="mapChart('seongbuk')">
     
-    <area shape="poly" tabindex="0" coords="203,154,173,142,165,104,148,125,161,172,171,163,202,164" href="#none" alt="종로구자원봉사센터" onmouseover="mapimg('/static/img/map06.png');" onfocus="mapimg('/static/img/map06.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="203,154,173,142,165,104,148,125,161,172,171,163,202,164" href="#none" alt="종로구" onmouseover="mapimg('/static/img/map06.png');" onfocus="mapimg('/static/img/map06.png');" onclick="mapChart('jongro')">
     
-    <area shape="poly" tabindex="0" coords="239,120,247,163,263,158,277,124,271,113" href="#none" alt="중랑구자원봉사센터" onmouseover="mapimg('/static/img/map07.png');" onfocus="mapimg('/static/img/map07.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="239,120,247,163,263,158,277,124,271,113" href="#none" alt="중랑구" onmouseover="mapimg('/static/img/map07.png');" onfocus="mapimg('/static/img/map07.png');" onclick="mapChart('jungnang')">
     
-    <area shape="poly" tabindex="0" coords="239,124,201,153,207,161,241,171,246,162" href="#none" alt="동대문구자원봉사센터" onmouseover="mapimg('/static/img/map08.png');" onfocus="mapimg('/static/img/map08.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="239,124,201,153,207,161,241,171,246,162" href="#none" alt="동대문구" onmouseover="mapimg('/static/img/map08.png');" onfocus="mapimg('/static/img/map08.png');" onclick="mapChart('dongdaemun')">
     
-    <area shape="poly" tabindex="0" coords="147,126,109,158,127,176,161,173" href="#none" alt="서대문구자원봉사센터" onmouseover="mapimg('/static/img/map09.png');" onfocus="mapimg('/static/img/map09.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="147,126,109,158,127,176,161,173" href="#none" alt="서대문구" onmouseover="mapimg('/static/img/map09.png');" onfocus="mapimg('/static/img/map09.png');" onclick="mapChart(9)">
     
-    <area shape="poly" tabindex="0" coords="162,174,192,188,202,165,171,166" href="#none" alt="중구자원봉사센터" onmouseover="mapimg('/static/img/map10.png');" onfocus="mapimg('/static/img/map10.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="162,174,192,188,202,165,171,166" href="#none" alt="중구" onmouseover="mapimg('/static/img/map10.png');" onfocus="mapimg('/static/img/map10.png');" onclick="mapChart('jung')">
     
-    <area shape="poly" tabindex="0" coords="204,161,192,190,200,197,232,200,241,174" href="#none" alt="성동구자원봉사센터" onmouseover="mapimg('/static/img/map11.png');" onfocus="mapimg('/static/img/map11.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="204,161,192,190,200,197,232,200,241,174" href="#none" alt="성동구" onmouseover="mapimg('/static/img/map11.png');" onfocus="mapimg('/static/img/map11.png');" onclick="mapChart('seongdong')">
     
-    <area shape="poly" tabindex="0" coords="248,165,233,203,261,205,273,173,263,162" href="#none" alt="광진구자원봉사센터" onmouseover="mapimg('/static/img/map12.png');" onfocus="mapimg('/static/img/map12.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="248,165,233,203,261,205,273,173,263,162" href="#none" alt="광진구" onmouseover="mapimg('/static/img/map12.png');" onfocus="mapimg('/static/img/map12.png');" onclick="mapChart('gwangjin')">
     
-    <area shape="poly" tabindex="0" coords="320,151,275,173,270,189,294,216,326,184" href="#none" alt="강동구자원봉사센터" onmouseover="mapimg('/static/img/map13.png');" onfocus="mapimg('/static/img/map13.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="320,151,275,173,270,189,294,216,326,184" href="#none" alt="강동구" onmouseover="mapimg('/static/img/map13.png');" onfocus="mapimg('/static/img/map13.png');" onclick="mapChart('gangdong')">
     
-    <area shape="poly" tabindex="0" coords="34,130,104,186,79,184,77,202,61,204,53,188,51,195,4,182" href="#none" alt="강서구자원봉사센터" onmouseover="mapimg('/static/img/map14.png');" onfocus="mapimg('/static/img/map14.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="34,130,104,186,79,184,77,202,61,204,53,188,51,195,4,182" href="#none" alt="강서구" onmouseover="mapimg('/static/img/map14.png');" onfocus="mapimg('/static/img/map14.png');" onclick="mapChart('gangseo')">
     
-    <area shape="poly" tabindex="0" coords="111,191,140,205,157,175,127,178,94,143,70,158" href="#none" alt="마포구자원봉사센터" onmouseover="mapimg('/static/img/map15.png');" onfocus="mapimg('/static/img/map15.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="111,191,140,205,157,175,127,178,94,143,70,158" href="#none" alt="마포구" onmouseover="mapimg('/static/img/map15.png');" onfocus="mapimg('/static/img/map15.png');" onclick="mapChart('mapo')">
     
-    <area shape="poly" tabindex="0" coords="99,185,96,218,108,244,141,206" href="#none" alt="영등포구자원봉사센터" onmouseover="mapimg('/static/img/map16.png');" onfocus="mapimg('/static/img/map16.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="99,185,96,218,108,244,141,206" href="#none" alt="영등포구" onmouseover="mapimg('/static/img/map16.png');" onfocus="mapimg('/static/img/map16.png');" onclick="mapChart('yeongdeungpo')">
     
-    <area shape="poly" tabindex="0" coords="142,207,173,221,199,199,189,188,160,175" href="#none" alt="용산구자원봉사센터" onmouseover="mapimg('/static/img/map17.png');" onfocus="mapimg('/static/img/map17.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="142,207,173,221,199,199,189,188,160,175" href="#none" alt="용산구" onmouseover="mapimg('/static/img/map17.png');" onfocus="mapimg('/static/img/map17.png');" onclick="mapChart('yongsan')">
     
-    <area shape="poly" tabindex="0" coords="220,199,200,201,196,206,218,258,250,258,263,276,288,261,246,228,238,208" href="#none" alt="강남구자원봉사센터" onmouseover="mapimg('/static/img/map18.png');" onfocus="mapimg('/static/img/map18.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="220,199,200,201,196,206,218,258,250,258,263,276,288,261,246,228,238,208" href="#none" alt="강남구" onmouseover="mapimg('/static/img/map18.png');" onfocus="mapimg('/static/img/map18.png');" onclick="mapChart('gangnam')">
     
-    <area shape="poly" tabindex="0" coords="240,206,250,230,289,262,312,231,270,192,262,207" href="#none" alt="송파구자원봉사센터" onmouseover="mapimg('/static/img/map19.png');" onfocus="mapimg('/static/img/map19.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="240,206,250,230,289,262,312,231,270,192,262,207" href="#none" alt="송파구" onmouseover="mapimg('/static/img/map19.png');" onfocus="mapimg('/static/img/map19.png');" onclick="mapChart('songpa')">
     
-    <area shape="poly" tabindex="0" coords="97,188,93,221,50,225,50,198,54,192,63,206,76,205,80,186" href="#none" alt="양천구자원봉사센터" onmouseover="mapimg('/static/img/map20.png');" onfocus="mapimg('/static/img/map20.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="97,188,93,221,50,225,50,198,54,192,63,206,76,205,80,186" href="#none" alt="양천구" onmouseover="mapimg('/static/img/map20.png');" onfocus="mapimg('/static/img/map20.png');" onclick="mapChart('yangcheon')">
     
-    <area shape="poly" tabindex="0" coords="96,223,47,227,40,247,61,260,88,245,109,249" href="#none" alt="구로구자원봉사센터" onmouseover="mapimg('/static/img/map21.png');" onfocus="mapimg('/static/img/map21.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="96,223,47,227,40,247,61,260,88,245,109,249" href="#none" alt="구로구" onmouseover="mapimg('/static/img/map21.png');" onfocus="mapimg('/static/img/map21.png');" onclick="mapChart('guro')">
     
-    <area shape="poly" tabindex="0" coords="90,247,110,248,133,285,105,293" href="#none" alt="금천구자원봉사센터" onmouseover="mapimg('/static/img/map22.png');" onfocus="mapimg('/static/img/map22.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="90,247,110,248,133,285,105,293" href="#none" alt="금천구" onmouseover="mapimg('/static/img/map22.png');" onfocus="mapimg('/static/img/map22.png');" onclick="mapChart('geumcheon')">
     
-    <area shape="poly" tabindex="0" coords="111,247,141,298,178,274,169,255,152,241,131,239" href="#none" alt="관악구자원봉사센터" onmouseover="mapimg('/static/img/map23.png');" onfocus="mapimg('/static/img/map23.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="111,247,141,298,178,274,169,255,152,241,131,239" href="#none" alt="관악구" onmouseover="mapimg('/static/img/map23.png');" onfocus="mapimg('/static/img/map23.png');" onclick="mapChart('gwanak')">
     
-    <area shape="poly" tabindex="0" coords="141,207,108,245,138,235,157,240,173,260,168,222" href="#none" alt="동작구자원봉사센터" onmouseover="mapimg('/static/img/map25.png');" onfocus="mapimg('/static/img/map25.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="178,269,236,299,262,277,248,261,216,261,195,206,170,224" href="#none" alt="서초구" onmouseover="mapimg('/static/img/map24.png');" onfocus="mapimg('/static/img/map24.png');" onclick="mapChart('seocho')">
     
-    <area shape="poly" tabindex="0" coords="178,269,236,299,262,277,248,261,216,261,195,206,170,224" href="#none" alt="서초구자원봉사센터" onmouseover="mapimg('/static/img/map24.png');" onfocus="mapimg('/static/img/map24.png');">
+    <area shape="poly" data-bs-toggle="modal" data-bs-target="#viewModal" tabindex="0" coords="141,207,108,245,138,235,157,240,173,260,168,222" href="#none" alt="동작구" onmouseover="mapimg('/static/img/map25.png');" onfocus="mapimg('/static/img/map25.png');" onclick="mapChart('dongjak')">
     
   </map>
 
-  <!-- <div class="col-8">
-    <canvas id="line-chart-yc"></canvas>
-    <canvas id="line-chart-db"></canvas>
-  </div> -->
 
-
-<!-- {% include "dashboard/script.html" %} -->
+  
+{% include "dashboard/script.html" %}
 {% endblock %}
+

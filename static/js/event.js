@@ -7,18 +7,10 @@ let nav_h = document.querySelector(".navbar").clientHeight;
 let con_h = document.querySelector("div.contents").clientHeight;
 let footer_h = document.querySelector("footer").clientHeight;
 
-console.log(nav_h, con_h, footer_h)
-console.log(window.innerHeight)
-doc_h = nav_h + con_h + footer_h
-if (doc_h >= window.innerHeight){
-  document.querySelector('footer').classList.remove('fixed-bottom')
+console.log(nav_h, con_h, footer_h);
+console.log(window.innerHeight);
+doc_h = nav_h + con_h + footer_h;
+if (doc_h >= window.innerHeight) {
+  document.querySelector("footer").classList.remove("fixed-bottom");
 }
 
-function mapimg(imgSrc){
-  console.log(imgSrc)
-  document.getElementById("map_change").src = imgSrc
-}
-
-function cltest(z){
-  console.log(z)
-}

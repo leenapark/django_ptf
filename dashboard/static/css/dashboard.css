@@ -3,17 +3,22 @@ div {
 }
 
 div.box1 > img {
-  position:absolute;
-  max-width:100%; max-height:100%;
-  width:auto; height:auto;
-  margin:auto;
-  top:0; bottom:0; left:0; right:0;
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .fixed-bottom {
   width: 100%;
   z-index: 1;
-  bottom:0;
+  bottom: 0;
   position: fixed;
 }
 
@@ -21,3 +26,10 @@ map {
   display: inline;
 }
 
+div.viewChart > #map_change {
+  width: 400px;
+}
+
+div.viewChart {
+  margin-top: 180px;
+}

@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import dashboard
+from . import views
 
 
 urlpatterns = [
-    path('', dashboard),
+    path('', views.dashboard),
+    path("post/", views.post_api, name="post")
 ]
