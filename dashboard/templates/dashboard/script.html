@@ -37,7 +37,7 @@
 		// console.log(saveName)
 		$('#viewModal').modal();
 		// console.log(x)
-
+		var borough = x
 		// 이미지 출력 ajax
 		$.ajax({
 			
@@ -69,7 +69,7 @@
 						labels: labels,
 						datasets: [{
 							data: data,
-							label: "America",
+							label: borough,
 							borderColor: "#3cba9f",
 							fill: false
 						}]

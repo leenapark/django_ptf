@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}회원가입 성공{% endblock title %}
+
+{% block main_area %}
+  <h1>{{ title }}</h1>
+  <br>
+
+  <p>감사합니다. 회원가입을 정상적으로 완료했습니다.</p>
+  <p class="font-italic"><a href="{% url 'login' %}">Log in</a></p>
+{% endblock %}

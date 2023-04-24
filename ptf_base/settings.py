@@ -41,6 +41,15 @@ INSTALLED_APPS = [
     "dashboard",
     "django_bootstrap5",
     "rest_framework",
+    # allauth 설정
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver',    
+    # 'allauth.socialaccount.providers.kakao',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -107,8 +116,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE ='ko-kr'
-TIME_ZONE ='Asia/Seoul'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
+
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -122,8 +134,24 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (BASE_DIR / "static",)
 
+# allauth settings
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_REQIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = "/"

@@ -1,20 +1,21 @@
+{% load socialaccount %}
 
 <!-- Header -->
 <header id="header">
-  <h1 id="logo"><a href="index.html">NOWHERE</a></h1>
+  <h1 id="logo"><a href="http://127.0.0.1:8000/">NOWHERE</a></h1>
   <nav id="nav" class="navbar">
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="http://127.0.0.1:8000/">HOME</a></li>
       <li>
-        <a href="#">Layouts</a>
+        <a href="#">DASHBOARD</a>
         <ul>
-          <li><a href="left-sidebar.html">Left Sidebar</a></li>
+          <li><a href="{% url 'chart' %}">미식한 고독가</a></li>
           <li><a href="right-sidebar.html">Right Sidebar</a></li>
           <li><a href="no-sidebar.html">No Sidebar</a></li>
           <li>
             <a href="#">Submenu</a>
             <ul>
-              <li><a href="#">Option 1</a></li>
+              <li><a href="">미식한 고독가</a></li>
               <li><a href="#">Option 2</a></li>
               <li><a href="#">Option 3</a></li>
               <li><a href="#">Option 4</a></li>
@@ -22,7 +23,9 @@
           </li>
         </ul>
       </li>
-      <li><a href="elements.html">Elements</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="elements.html">Elements</a></li>
+      {% endif %}
         {% if user.is_authenticated %}
           <li class="nav-item dropdown">
             <a href="" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,7 +43,7 @@
             </a>
           </li>
         {% endif %}
-      <li><a href="" class="button primary">Sign Up</a></li>
+      <li><a href="http://127.0.0.1:8000/accounts/register/" class="button primary">Sign Up</a></li>
     </ul>
   </nav>
 </header>
@@ -56,10 +59,10 @@
         </button>
       </div>
       <div class="modal-body d-grid gap-2">
-          <a href="" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class=""></i> Login</a>
-          <a href="" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class="bi bi-google"></i> Login with Google</a>
-          <a href="/accounts/signup/" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class="bi bi-envelope-fill"></i> SignUp with E-mail</a>
-          <a href="/accounts/login/" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class="bi bi-envelope-fill"></i> Login with E-mail</a>
+          <a href="/accounts/login/" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class="bi bi-door-open"></i> Login</a>
+          <a href="https://accounts.google.com/o/oauth2/v2/auth/identifier?client_id=783026437593-8ovgt4ila97re2ghnk4ig8qe354iqju4.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Faccounts%2Fgoogle%2Flogin%2Fcallback%2F&scope=profile&response_type=code&state=GYGzFDxQcoTD&service=lso&o2v=2&flowName=GeneralOAuthFlow" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class="bi bi-google"></i> Login with Google</a>
+          <!-- <a href="/accounts/signup/" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class="bi bi-envelope-fill"></i> SignUp with E-mail</a>
+          <a href="/accounts/login/" class="btn btn btn-outline-secondary btn-lg btn-block" role="button"><i class="bi bi-envelope-fill"></i> Login with E-mail</a> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

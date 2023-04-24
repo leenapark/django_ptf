@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 
 {% block head_title %}
-
+    Login
 {% endblock %}
+
 {% block style %}
+    <link rel="stylesheet" href="/static/css/user.css">
 {% endblock %}
 
 {% block main_area %}
@@ -13,12 +16,21 @@
         
         <div id="user">
             <div id="loginForm">
-                <form action="user/login" method="post">
-                    
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                  <div class="font-weight-hold">입력한 값이 정확하지 않습니다. 다시 확인하세요.</div>
+                  {{ form.errors }}
+                </div>
+                {% endif %}
+                <form action="" method="POST">
+                    {% csrf_token %}    
                     <!-- 아이디 -->
                     <div class="form-group">
                         <label class="form-text" for="input-uid">아이디</label>
-                        <input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
+                        <!-- <input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요"> -->
+                        <div class="col">
+                          {{ form.username|add_class:"form-control"|attr:"autofocus"}}
+                        </div>
                     </div>
                     
                     <!-- 비밀번호 -->
@@ -26,9 +38,6 @@
                         <label class="form-text" for="input-pass">비밀번호</label>
                         <input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요"	>
                     </div>
-                    {% if result == "fail" %}
-                        <span>로그인에 실패했습니다. 다시 입력해주세요.</span>
-                    {% endif %}
     
                     <!-- 버튼영역 -->
                     <div class="button-area">

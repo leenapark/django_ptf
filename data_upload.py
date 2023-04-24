@@ -14,7 +14,7 @@ django.setup()
 # data를 ORM으로 uploading 하기 위해 import
 from dashboard.models import DashData
 
-CSV_PATH='./dashboard/data/dobong/dobong.csv'
+CSV_PATH='./dashboard/data/yongsan/yongsan.csv'
 
 with open(CSV_PATH, "r", encoding="UTF-8") as file:
   dataRows = csv.reader(file, skipinitialspace=True)
@@ -32,7 +32,7 @@ with open(CSV_PATH, "r", encoding="UTF-8") as file:
             #     dbData[0] = int(dbData[0])
             #     print(type(dbData[0]))
             #     if dbData[3].isinstance(int, ):
-          
+         if dbData[3] != "" and dbData[3] != None and dbData[3].isdigit() == True: 
             dbData[3] = dbData[3].replace(",", "")
             dbData[3] = int(dbData[3])
 
@@ -41,7 +41,7 @@ with open(CSV_PATH, "r", encoding="UTF-8") as file:
                restaurant = dbData[1]
                personnel = dbData[2]
                price = dbData[3]
-               borough = "dobong"
+               borough = "yongsan"
 
                DashData.objects.create(
                   regDate = regDate,
