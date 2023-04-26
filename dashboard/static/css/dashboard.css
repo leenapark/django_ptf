@@ -26,9 +26,6 @@ map {
   display: inline;
 }
 
-div.viewChart > #map_change {
-  width: 400px;
-}
 
 div.viewChart {
   margin-top: 180px;

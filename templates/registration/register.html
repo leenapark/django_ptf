@@ -5,9 +5,10 @@
   <link rel="stylesheet" href="/static/css/user.css">
 {% endblock %}
 <!-- css -->
+{% block head_title %}
+	회원 가입
+{% endblock %}
 
-{% block title %}회원 가입{% endblock title %}
-<!-- head -->
 
 {% block main_area %}
 <h1 class="n-hidden">회원가입</h1>
@@ -28,8 +29,7 @@
 				<!-- join form -->
 				<div class="form-group">
 					<label for="userId" class="form-label" aria-hidden="true"> ID <span class="essential">필수 입력</span></label>
-					<input type="text" class="
-          " tabindex="0" id="userId" name="id" placeholder="ID 입력(5~11자)" autocomplete="off" maxlength="11">
+					<input type="text" class="" tabindex="0" id="userId" name="id" placeholder="ID 입력(5~11자)" autocomplete="off" maxlength="11">
 					<p class="n-validation" id="hLayerid">
 
 						<!-- 아이디 사용 가능 여부 -->
@@ -39,7 +39,7 @@
 
 				<div class="form-group pass">
 					<label for="password" class="form-label" aria-hidden="true"> Password <span class="essential">필수 입력</span></label>
-					<input type="text" class="d-input" tabindex="0" id="password" name="password" placeholder="비밀번호(숫자, 영문, 특수문자 조합 최소 8자)" autocomplete="off">
+					<input type="password" class="d-input" tabindex="0" id="password" name="password" placeholder="비밀번호(숫자, 영문, 특수문자 조합 최소 8자)" autocomplete="off">
 					<p class="n-validation" id="passwordValiMessage">
 
 						<!-- 패스워드 안내문 -->
@@ -48,7 +48,7 @@
 				</div>
 
 				<div class="form-group pass">
-					<input type="text" class="d-input" tabindex="0" id="confirmPassword" name="confirmPassword" placeholder="비밀번호 확인" autocomplete="new-password">
+					<input type="password" class="d-input" tabindex="0" id="confirmPassword" name="confirmPassword" placeholder="비밀번호 확인" autocomplete="new-password">
 					<p class="n-validation" id="passwordConfirmValiMessage">
 						
 						<!-- 비밀번호 확인 안내문 -->
@@ -131,10 +131,10 @@
 			</form>
 		</div>
 		<!-- join form -->
-{% endblock %}
-<!-- body -->
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+	
 	$("#userId").on("propertychange blur change keyup paste input", function() {
 		 chenkId();
 			});
@@ -146,6 +146,7 @@
 		var num = password.search(/[0-9]/g);
 		var eng = password.search(/[a-z]/ig);
 		var spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		console.log(num, eng, spe)
 		$("input[name='password']").val('');
 		$("input[name='password']").val(password);
 		if (password === '') {
@@ -260,16 +261,16 @@
 	});
 	// 이메일 주소 도메인 선택했을 때
 	$("#emailFromLayer ul").on("click","li button",function(e) {
-		console.log("button click");	
-		var email = $(this).text().trim();
-		console.log("email: " + email.trim());
-		
-        e.preventDefault();
-        $("#email").val(email);
-		$("#emailDomainList").hide();
-		$("#email").attr("class", "d-input input");
-		$("#hLayeremail").html("");
-        return false;
+					console.log("button click");	
+					var email = $(this).text().trim();
+					console.log("email: " + email.trim());
+					
+					e.preventDefault();
+					$("#email").val(email);
+					$("#emailDomainList").hide();
+					$("#email").attr("class", "d-input input");
+					$("#hLayeremail").html("");
+					return false;
     });
 	 
 	// email 입력칸에 입력했을 때
@@ -425,7 +426,7 @@
 	
 		$.ajax({
 	
-			url : "${pageContext.request.contextPath }/user/checkid",
+			url : "{% url 'idcheck' %}",
 			type : "post",
 			data : {
 				userId : userId
@@ -433,8 +434,9 @@
 	
 			dataType : "text",
 			success : function(response) {
+				console.log(response.length)
 				/*성공시 처리해야될 코드 작성*/
-				if (response == 'can') {
+				if (response == '"can"') {
 					console.log("can");
 					$("#userId").attr("class", "d-input input");
 					$("#hLayerid").attr("class", "n-validation validation-pass");
@@ -446,7 +448,7 @@
 					$("#hLayerid").html("사용할 수 없는 아이디 입니다.")
 	
 				}
-				console.log("response: " + response);
+				// console.log("response: " + response);
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -458,6 +460,8 @@
 	경고 css 추가로 주기
 	경고 먹으면 submit 안되게 하기 */
 	
-	
-	
 </script>
+
+
+{% endblock %}
+<!-- body -->

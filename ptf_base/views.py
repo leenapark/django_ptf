@@ -3,6 +3,12 @@ from django.views.generic import CreateView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 from .forms import CreateUserForm
+import json
+from django.http import HttpResponse
+from django.core.serializers.json import DjangoJSONEncoder
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+
 
 def index(request):
     template_name = "index.html"
@@ -21,3 +27,16 @@ class UserSign(CreateView):
 
 class UserSignOk(TemplateView):
     template_name = "registration/register_done.html"
+
+@csrf_exempt
+@api_view(['POST', 'GET'])
+def checkId(request):
+    if request.method == "POST":
+        check = request.POST.get("userId")
+        print(check)
+        if check != None:
+            response = "can"
+        
+        resultId = json.dumps(response, cls=DjangoJSONEncoder, ensure_ascii=False)
+
+    return HttpResponse(resultId, content_type ="application/json")

@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import pymysql
+pymysql.install_as_MySQLdb()
+
+from . import myenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +25,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7x^8$j3ns^cdk#8q&m=jbr-@hcsc_@n_a9g&5la1008*4b#tpp'
+SECRET_KEY = myenv.SECRET_KEY
+# SECRET_KEY = 'django-insecure-7x^8$j3ns^cdk#8q&m=jbr-@hcsc_@n_a9g&5la1008*4b#tpp'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = myenv.DEBUG
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = myenv.ALLOWED_HOSTS
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -86,12 +94,21 @@ WSGI_APPLICATION = 'ptf_base.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = myenv.DATABASES
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ptf_dashboard_db',
+#         'USER': 'admin',
+#         'PASSWORD' : 'django20230414',
+#         'HOST' : 'django-pjt-db.ceogn7iklwh9.ap-northeast-2.rds.amazonaws.com',
+#         'PORT' : '3306',
+#         'OPTIONS':{
+#             'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
 
 
 # Password validation

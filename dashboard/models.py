@@ -9,7 +9,7 @@ class DashData(models.Model):
     price = models.IntegerField()
     borough = models.CharField(max_length=500, default = '')
 
-# class TestData(models.Model):
-#     restaurant = models.CharField(max_length=300)
-#     psSum = models.IntegerField()
-#     prSum = models.IntegerField()
+class TopData(models.Model):
+    restaurant = models.CharField(max_length=300)
+    result = models.IntegerField()
+    borough = models.CharField(max_length=500, default = '')
