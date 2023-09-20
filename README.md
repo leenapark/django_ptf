@@ -13,7 +13,7 @@ django portfolio
 #### 플랫폼
 - Web
 
-### 개발 환경
+#### 개발 환경
 - 언어
   - Python 3.9
   - HTML/CSS
