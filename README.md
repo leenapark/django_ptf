@@ -20,10 +20,8 @@ django portfolio
   - JavaScript
 - 프레임워크
   - Django
-- ML
-  - LogisticRegression 
 - DB
-  - MySQL
+  - SQLite
 - IDE
   - VS Code
   - DBeaver
